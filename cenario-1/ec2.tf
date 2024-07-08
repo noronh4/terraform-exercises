@@ -2,7 +2,8 @@ resource "aws_instance" "ec2_public" {
   ami = "ami-04a81a99f5ec58529"
   instance_type = "t2.micro"
   subnet_id = aws_subnet.SUBNET-CENARIO-1-PUBLIC.id
-  security_groups = [ "aws_security_group.allow_ssh_icmp_public.id" ]
+  vpc_security_group_ids = [aws_security_group.allow_ssh_icmp_public.id]
+  
   key_name = aws_key_pair.ec2_public_key_pair.id
 
 
@@ -18,7 +19,7 @@ resource "aws_instance" "ec2_private" {
   ami = "ami-04a81a99f5ec58529"
   instance_type = "t2.micro"
   subnet_id = aws_subnet.SUBNET-CENARIO-1-PRIVATE.id
-  security_groups = [ "aws_security_group.allow_ssh_icmp_private.id" ]
+  vpc_security_group_ids = [aws_security_group.allow_ssh_icmp_private.id]
 
 
   tags = {
