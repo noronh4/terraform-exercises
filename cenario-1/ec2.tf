@@ -29,7 +29,7 @@ resource "aws_instance" "ec2_private" {
   instance_type = "t2.micro"
   subnet_id = aws_subnet.SUBNET-CENARIO-1-PRIVATE.id
   vpc_security_group_ids = [aws_security_group.allow_ssh_icmp_private.id]
-
+  key_name = aws_key_pair.ec2_public_key_pair.id
 
   tags = {
     Name = "TERRAFORM-CENARIO-1"
