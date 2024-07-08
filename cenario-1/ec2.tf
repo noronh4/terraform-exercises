@@ -3,8 +3,17 @@ resource "aws_instance" "ec2_public" {
   instance_type = "t2.micro"
   subnet_id = aws_subnet.SUBNET-CENARIO-1-PUBLIC.id
   vpc_security_group_ids = [aws_security_group.allow_ssh_icmp_public.id]
-  
+
   key_name = aws_key_pair.ec2_public_key_pair.id
+
+  user_data = <<-EOF
+            #!/bin/bash
+            sudo su
+            mkfs -t ext4 /dev/xvdh
+            mkdir /dev/xvdh1/
+            mount /dev/xvdh /dev/xvdh1/
+            echo '/dev/xvdh /dev/xvdh1/ ext4 defaults,nofail 0 2' >> /etc/fstab
+            EOF
 
 
   tags = {
