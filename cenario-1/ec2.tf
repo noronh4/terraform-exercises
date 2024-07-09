@@ -8,11 +8,11 @@ resource "aws_instance" "ec2_public" {
 
   user_data = <<-EOF
             #!/bin/bash
-            sudo su
-            mkfs -t ext4 /dev/xvdh
-            mkdir /dev/xvdh1/
-            mount /dev/xvdh /dev/xvdh1/
-            echo '/dev/xvdh /dev/xvdh1/ ext4 defaults,nofail 0 2' >> /etc/fstab
+            exec > >(tee /var/log/user-data.log | logger -t user-data) 2>&1
+            sleep 30 # garantir a inicialização do sistema
+            sudo mkfs -t ext4 /dev/xvdh
+            sudo mkdir /mnt/xvdh/
+            sudo mount /dev/xvdh /mnt/xvdh/
             EOF
 
 
