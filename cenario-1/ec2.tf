@@ -15,12 +15,24 @@ resource "aws_instance" "ec2_public" {
             sudo mount /dev/xvdh /mnt/xvdh/
             EOF
 
+            
+  provisioner "file" {
+    source      = "./ec2-privatekey"
+    destination = "/home/ubuntu/.ssh/ec2-privatekey"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("./ec2-privatekey")
+      host        = self.public_ip
+    }
+  }
 
   tags = {
     Name = "TERRAFORM-CENARIO-1"
   }
 
-  depends_on = [ aws_vpc.VPC-CENARIO-1 ]
+  depends_on = [ aws_vpc.VPC-CENARIO-1 ] 
 
 }
 
