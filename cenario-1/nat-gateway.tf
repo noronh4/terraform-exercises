@@ -6,7 +6,7 @@ resource "aws_eip" "nat_eip-CENARIO-1" {
 
 resource "aws_nat_gateway" "nat-gateway-CENARIO-1" {
   allocation_id = aws_eip.nat_eip-CENARIO-1.id
-  subnet_id     = aws_subnet.SUBNET-CENARIO-1-PRIVATE.id
+  subnet_id     = aws_subnet.SUBNET-CENARIO-1-PUBLIC.id
 
   tags = {
     Name = "TERRAFORM-CENARIO-1"
