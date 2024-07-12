@@ -29,7 +29,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   security_group_id = aws_security_group.allow_http_https_ssh.id
-  cidr_ipv6         = aws_vpc.vpc.cidr_block
+  cidr_ipv4         = aws_vpc.vpc.cidr_block
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
