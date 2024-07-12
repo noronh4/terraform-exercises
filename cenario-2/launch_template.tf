@@ -14,7 +14,7 @@ resource "aws_launch_template" "web_server" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.ec2_public_key_pair.id
   user_data              = filebase64("./script.sh")
-  vpc_security_group_ids = [aws_security_group.allow_http_ssh.id]
+  vpc_security_group_ids = [aws_security_group.allow_http_https_ssh.id]
 
   placement {
     availability_zone = "us-east-1a"
