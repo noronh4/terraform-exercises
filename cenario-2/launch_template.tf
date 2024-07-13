@@ -24,10 +24,6 @@ resource "aws_launch_template" "web_server" {
     enabled = true
   }
 
-  network_interfaces {
-    associate_public_ip_address = true
-  }
-
   tag_specifications {
     resource_type = "instance"
 
