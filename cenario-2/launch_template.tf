@@ -13,7 +13,7 @@ resource "aws_launch_template" "web_server" {
   image_id               = "ami-04a81a99f5ec58529"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.ec2_public_key_pair.id
-  user_data              = filebase64("./script.sh")
+  user_data              = base64encode(file("./script.sh"))
   vpc_security_group_ids = [aws_security_group.allow_http_https_ssh.id]
 
   placement {
