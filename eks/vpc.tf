@@ -5,8 +5,9 @@ resource "aws_vpc" "eks_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name    = "eks-vpc"
-    Billing = "eks-billing"
+    Name                     = "eks-vpc"
+    Billing                  = "eks-billing"
+    "kubernetes.io/role/elb" = 1
   }
 }
 
@@ -31,7 +32,8 @@ resource "aws_subnet" "eks_subnet_private_1b" {
   availability_zone = "${data.aws_region.current.name}b"
 
   tags = {
-    Name    = "eks_subnet_private_1b"
-    Billing = "eks-billing"
+    Name                              = "eks_subnet_private_1b"
+    Billing                           = "eks-billing"
+    "kubernetes.io/role/internal-elb" = 1
   }
 }
