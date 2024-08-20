@@ -1,7 +1,22 @@
-resource "aws_eip" "nat_gateway_private_1a" {
+resource "aws_eip" "eip_nat_gateway_private_1a" {
   domain = "vpc"
+
+  tags = merge(
+    local.tags,
+    {
+      Name = "${var.project_name}-eip_nat_gateway_private_1a"
+    }
+  )
 }
 
-resource "aws_eip" "nat_gateway_private_1b" {
+resource "aws_eip" "eip_nat_gateway_private_1b" {
   domain = "vpc"
+
+  tags = merge(
+    local.tags,
+    {
+      Name = "${var.project_name}-eip_nat_gateway_private_1b"
+    }
+
+  )
 }
