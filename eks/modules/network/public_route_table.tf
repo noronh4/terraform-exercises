@@ -7,7 +7,7 @@ resource "aws_route_table" "route_table_public" {
   }
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-route_table_public"
     }
