@@ -4,10 +4,12 @@ resource "aws_subnet" "eks_subnet_public_1a" {
   map_public_ip_on_launch = true
   availability_zone       = "${data.aws_region.current.name}a"
 
-  tags = {
-    Name = "eks_subnet_public_1a"
-
-  }
+  tags = merge(
+    local.tags,
+    {
+      Name = "eks_subnet_public_1a"
+    }
+  )
 }
 
 resource "aws_subnet" "eks_subnet_public_1b" {
@@ -16,8 +18,10 @@ resource "aws_subnet" "eks_subnet_public_1b" {
   map_public_ip_on_launch = true
   availability_zone       = "${data.aws_region.current.name}b"
 
-  tags = {
-    Name = "eks_subnet_public_1b"
-
-  }
+  tags = merge(
+    local.tags,
+    {
+      Name = "eks_subnet_public_1b"
+    }
+  )
 }
