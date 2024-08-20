@@ -5,7 +5,7 @@ resource "aws_vpc" "eks_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name                     = "eks-vpc"
+    Name                     = "${var.project_name}-vpc"
     Billing                  = "eks-billing"
     "kubernetes.io/role/elb" = 1
   }
