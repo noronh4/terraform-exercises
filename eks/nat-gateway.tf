@@ -9,6 +9,8 @@ resource "aws_nat_gateway" "nat_gateway_public_1a" {
     }
   )
 
+  depends_on = [aws_internet_gateway.internet_gateway]
+
 }
 
 resource "aws_nat_gateway" "nat_gateway_public_1b" {
@@ -21,5 +23,7 @@ resource "aws_nat_gateway" "nat_gateway_public_1b" {
       Name = "${var.project_name}-nat_gateway_public_1a"
     }
   )
+
+  depends_on = [aws_internet_gateway.internet_gateway]
 
 }
