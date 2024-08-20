@@ -3,7 +3,7 @@ resource "aws_nat_gateway" "nat_gateway_public_1a" {
   subnet_id     = aws_subnet.eks_subnet_public_1a.id
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-nat_gateway_public_1a"
     }
@@ -18,7 +18,7 @@ resource "aws_nat_gateway" "nat_gateway_public_1b" {
   subnet_id     = aws_subnet.eks_subnet_private_1b.id
 
   tags = merge(
-    local.tags,
+    var.tags,
     {
       Name = "${var.project_name}-nat_gateway_public_1a"
     }
