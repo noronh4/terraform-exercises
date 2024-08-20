@@ -4,10 +4,13 @@ resource "aws_subnet" "eks_subnet_private_1a" {
   map_public_ip_on_launch = true
   availability_zone       = "${data.aws_region.current.name}a"
 
-  tags = {
-    Name = "eks_subnet_private_1a"
-
-  }
+  tags = merge(
+    local.tags,
+    {
+      Name                              = "eks_subnet_private_1a"
+      "kubernetes.io/role/internal-elb" = 1
+    }
+  )
 }
 
 resource "aws_subnet" "eks_subnet_private_1b" {
@@ -16,8 +19,11 @@ resource "aws_subnet" "eks_subnet_private_1b" {
   map_public_ip_on_launch = true
   availability_zone       = "${data.aws_region.current.name}b"
 
-  tags = {
-    Name = "eks_subnet_private_1b"
-
-  }
+  tags = merge(
+    local.tags,
+    {
+      Name                              = "eks_subnet_private_1b"
+      "kubernetes.io/role/internal-elb" = 1
+    }
+  )
 }
