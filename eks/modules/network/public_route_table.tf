@@ -16,7 +16,7 @@ resource "aws_route_table" "route_table_public" {
 }
 
 #route-table-association
-resource "aws_route_table_association" "route_table_association_subnet_public_1" {
+resource "aws_route_table_association" "route_table_association_subnet_public_1a" {
   subnet_id      = aws_subnet.eks_subnet_public_1a.id
   route_table_id = aws_route_table.route_table_public.id
 
@@ -24,8 +24,8 @@ resource "aws_route_table_association" "route_table_association_subnet_public_1"
 }
 
 #route-table-association
-resource "aws_route_table_association" "route_table_association_subnet_public_2" {
-  subnet_id      = aws_subnet.eks_subnet_private_1b.id
+resource "aws_route_table_association" "route_table_association_subnet_public_1b" {
+  subnet_id      = aws_subnet.eks_subnet_public_1b.id
   route_table_id = aws_route_table.route_table_public.id
 
 }
