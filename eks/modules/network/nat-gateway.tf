@@ -20,7 +20,7 @@ resource "aws_nat_gateway" "nat_gateway_public_1b" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.project_name}-nat_gateway_public_1a"
+      Name = "${var.project_name}-nat_gateway_public_1b"
     }
   )
 
