@@ -26,7 +26,7 @@ resource "aws_route_table" "route_table_private_1b" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.project_name}-route_table_private_1a"
+      Name = "${var.project_name}-route_table_private_1b"
     }
   )
 
