@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # Broker 3
+  kafka-broker-3:
+    image: confluentinc/cp-kafka:7.8.0
+    container_name: kafka-broker-3
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+      - "19093:19093"
+
+    #command: ["tail", "-f", "/dev/null"] # Usado apenas para configurar o cluster
+    command: ["kafka-server-start", "/etc/kafka/kraft/broker.properties"]
+
+    volumes:
+      - broker3_log_dirs:/tmp
+      - broker3_config:/etc/kafka
+      - ./broker.properties:/etc/kafka/kraft/broker.properties
+
+volumes:
+  broker3_log_dirs:
+  broker3_config:
+
