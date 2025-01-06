@@ -46,6 +46,18 @@ resource "aws_instance" "kafka-broker-1" {
     }
   }
 
+  provisioner "file" {
+    source      = "./broker-1/producer.py"
+    destination = "/home/ubuntu/kafka/producer.py"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("./ec2-private-key-pair-kafka-lab.pem")
+      host        = self.public_ip
+    }
+  }
+
   tags = {
     Name = "Kafka-broker-1"
     Env  = "Kafka-lab"
