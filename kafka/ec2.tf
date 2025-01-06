@@ -168,6 +168,18 @@ resource "aws_instance" "kafka-broker-3" {
     }
   }
 
+  provisioner "file" {
+    source      = "./broker-3/consumer.py"
+    destination = "/home/ubuntu/kafka/consumer.py"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("./ec2-private-key-pair-kafka-lab.pem")
+      host        = self.public_ip
+    }
+  }
+
   tags = {
     Name = "Kafka-broker-3"
     Env  = "Kafka-lab"
