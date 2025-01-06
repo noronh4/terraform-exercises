@@ -5,7 +5,7 @@ import json
 logging.basicConfig(level=logging.DEBUG)
 
 producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092', 'localhost:9192', 'localhost:9292'],
+    bootstrap_servers=['10.0.1.10:9093', '10.0.1.20:9093', '10.0.1.30:9093'],
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
