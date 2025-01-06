@@ -1,0 +1,54 @@
+1. broker 1:
+    kafka-storage random-uuid
+        irá gerar um id aleatório
+    zvldaaOrQqSRQ4wM-PSfwA
+
+2. Inicializar o broker com o CLUSTER_ID
+    No container ainda, formate o broker com o ID gerado. Use o caminho do arquivo de configuração padrão do Kafka para KRaft:
+        Confluent:
+        kafka-storage format -t zvldaaOrQqSRQ4wM-PSfwA -c /etc/kafka/kraft/broker.properties --ignore-formatted
+
+        Bitnami:
+        kafka-storage.sh format -t zvldaaOrQqSRQ4wM-PSfwA -c /opt/bitnami/kafka/config/kraft/broker.properties --ignore-formatted
+
+    
+    Isso inicializará os logs do broker para que ele possa funcionar no cluster KRaft.
+
+3. Start the broker:
+    kafka-server-start /etc/kafka/kraft/broker.properties
+------------------------------------------------------
+
+Para Que Serve listeners?
+A variável listeners configura os endpoints onde o broker Kafka estará "escutando" conexões. Cada tipo de listener pode ser configurado para atender diferentes propósitos:
+
+INTERNAL: Comunicação interna entre brokers.
+CONTROLLER: Comunicação entre o controlador e os brokers em um cluster com KRaft habilitado.
+EXTERNAL: Comunicação com consumidores, produtores ou ferramentas externas.
+
+----------------------- python ------------------
+# Exemplo instalando Python 3.10 em Ubuntu (via deadsnakes)
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install python3.10 python3.10-venv
+
+# Criar e ativar ambiente virtual com Python 3.10
+python3.10 -m venv py310env
+source py310env/bin/activate
+pip install --upgrade pip
+pip install kafka-python
+
+------------- testar conectividade ---------------
+nc -zv localhost 9292
+
+--------------------------------------------------
+kafka-topics --list --bootstrap-server localhost:9092
+kafka-topics --describe --topic events --bootstrap-server localhost:9092
+
+---------------------------------------------------
+Linux up new ENI's
+ip addr add 10.0.1.10/24 dev enX1 # setar o ip
+ip route add 10.0.1.0/24 dev enX1 # add route
+sudo ip link set dev enX1 up      # subir interface
+
+
+
