@@ -34,6 +34,18 @@ resource "aws_instance" "kafka-broker-1" {
     }
   }
 
+  provisioner "file" {
+    source      = "./broker-1/docker-compose.yml"
+    destination = "/home/ubuntu/kafka/docker-compose.yml"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("./ec2-private-key-pair-kafka-lab.pem")
+      host        = self.public_ip
+    }
+  }
+
   tags = {
     Name = "Kafka-broker-1"
     Env  = "Kafka-lab"
@@ -67,6 +79,18 @@ resource "aws_instance" "kafka-broker-2" {
   provisioner "file" {
     source      = "./broker-2/broker.properties"
     destination = "/home/ubuntu/kafka/broker.properties"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("./ec2-private-key-pair-kafka-lab.pem")
+      host        = self.public_ip
+    }
+  }
+
+  provisioner "file" {
+    source      = "./broker-2/docker-compose.yml"
+    destination = "/home/ubuntu/kafka/docker-compose.yml"
 
     connection {
       type        = "ssh"
@@ -111,6 +135,18 @@ resource "aws_instance" "kafka-broker-3" {
   provisioner "file" {
     source      = "./broker-3/broker.properties"
     destination = "/home/ubuntu/kafka/broker.properties"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("./ec2-private-key-pair-kafka-lab.pem")
+      host        = self.public_ip
+    }
+  }
+
+  provisioner "file" {
+    source      = "./broker-3/docker-compose.yml"
+    destination = "/home/ubuntu/kafka/docker-compose.yml"
 
     connection {
       type        = "ssh"
