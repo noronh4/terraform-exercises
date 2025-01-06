@@ -16,6 +16,8 @@
 
 3. Start the broker:
     kafka-server-start /etc/kafka/kraft/broker.properties
+
+Link: https://docs.confluent.io/platform/current/get-started/tutorial-multi-broker.html#start-the-controller-and-brokers
 ------------------------------------------------------
 
 Para Que Serve listeners?
